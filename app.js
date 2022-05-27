@@ -15,8 +15,7 @@ if (userLocation.length > 0){
             console.log(weatherData.current.weather_descriptions[0])
             console.log(`Temperature: ${weatherData.current.temperature} degress.`)           
             })
-        }
-    )
+        })
 } else {
     console.log("Please enter a location to display weather!")
 }
