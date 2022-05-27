@@ -5,15 +5,14 @@ let userLocation = process.argv[2]
 
 if (userLocation.length > 0){
     
-    geocode(userLocation, (err, geoData) => { 
+    geocode(userLocation, (err, {latitud, longitud, location} = {}) => { 
         if (err)  return console.log(err)  
     
-        weather(geoData.latitud, geoData.longitud, (err, weatherData) => {   
+        weather(latitud, longitud, (err, { weather_descriptions , temperature}) => {   
             if (err) return console.log(err)
     
-            console.log(`Location: ${geoData.location}`)
-            console.log(weatherData.current.weather_descriptions[0])
-            console.log(`Temperature: ${weatherData.current.temperature} degress.`)           
+            console.log(`Location: ${location}`)
+            console.log(`Temperature: ${temperature} degress. \nWeather: ${weather_descriptions[0]}`)           
             })
         })
 } else {

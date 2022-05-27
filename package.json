@@ -1,5 +1,5 @@
 {
-  "name": "wheater-app",
+  "name": "weather-app",
   "version": "0.0.1",
   "description": "weather app in node.js",
   "main": "app.js",
