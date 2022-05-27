@@ -42,6 +42,7 @@ app.get('/help', (req, res) => {
     })
 })
 
+//Weather endpoint /weather?address=location
 app.get('/weather', (req, res) => {
     if(!req.query.address) return res.send({ error: "Address is required"})
 
