@@ -1,25 +1,22 @@
-const axios = require('axios');
-
 const geocode = require('./utils/geocode.js')
+const weather = require('./utils/weather.js')
 
-const weatherUrl = "http://api.weatherstack.com"
+let userLocation = process.argv[2]
 
-
-// axios.get(`${weatherUrl}/current?access_key=${weatherToken}&query=Guatemala City`)
-// .then( res => {
-//     //console.log(res.data.current)
-//     console.log(`It is currently ${res.data.current.temperature} degress out. It feels like ${res.data.current.feelslike} degress out.`)
+if (userLocation.length > 0){
     
-// }).catch(err => {
-//     console.log(`Unable to get data - ${err}`)
-// });
-
-
-
-geocode("Los Angeles", (err, data) => { 
-    if (err){
-        console.log(err)
-    } else {
-        console.log(data)
-    }
-})
+    geocode(userLocation, (err, geoData) => { 
+        if (err)  return console.log(err)  
+    
+        weather(geoData.latitud, geoData.longitud, (err, weatherData) => {   
+            if (err) return console.log(err)
+    
+            console.log(`Location: ${geoData.location}`)
+            console.log(weatherData.current.weather_descriptions[0])
+            console.log(`Temperature: ${weatherData.current.temperature} degress.`)           
+            })
+        }
+    )
+} else {
+    console.log("Please enter a location to display weather!")
+}
