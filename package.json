@@ -1,6 +1,6 @@
 {
   "name": "weather-app",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "weather app in node.js",
   "main": "app.js",
   "scripts": {
@@ -10,9 +10,13 @@
   "author": "Jose Paredes",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.27.2",
-    "dotenv": "^16.0.1",
-    "express": "^4.18.1",
-    "hbs": "^4.2.0"
+    "axios": "0.27.2",
+    "concurrently": "7.2.1",
+    "dotenv": "16.0.1",
+    "express": "4.18.1",
+    "hbs": "4.2.0"
+  },
+  "devDependencies": {
+    "nodemon": "2.0.16"
   }
 }
