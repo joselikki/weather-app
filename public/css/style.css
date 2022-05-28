@@ -41,8 +41,13 @@ footer{
 
 footer p {
     font-size: 0.75em;
+    margin-left: 3em;
 }
 
 .img-chems {
     width: 150px;
+}
+
+.container{
+    margin-top: 3em;
 }
