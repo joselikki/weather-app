@@ -7,7 +7,7 @@ require('dotenv').config()
 const app = express()
 
 //Define routers
-
+const homeViewRouter = require('./routes/views/home')
 const weatherApiRouter = require('./routes/api/weather')
 
 //Define pahts for Express config
@@ -24,34 +24,8 @@ hbs.registerPartials(partialsPath)
 app.use(express.static(publicPath))
 
 //Routes
-app.get('/', (req,res) => {
-    res.render('index', {
-        headTitle : 'Weather',
-        title : 'Weather App'
-    })
-})
-
-app.get('/about', (req, res) => {
-    res.render('about', {
-        headTitle: 'About',
-        title: "About Page with Chems!"
-    })
-})
-
-app.get('/help', (req, res) => {
-    res.render('help', {
-        headTitle: 'Help',
-        title: "This is a help page :v"
-    })
-})
-
+app.use('/', homeViewRouter)
 app.use('/weather', weatherApiRouter)
-
-app.get('/help/*', (req, res) =>{
-    res.render('404Help', {
-        headTitle: "Not Found - Article"
-    })
-})
 
 app.get('*', (req, res) =>{
     res.render('404',{
