@@ -55,7 +55,7 @@ app.get('/weather', (req, res) => {
             res.send({
                 location,
                 temperature,
-                wather: weather_descriptions[0]
+                weather: weather_descriptions[0]
             })
             
         })
