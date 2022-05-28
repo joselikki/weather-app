@@ -3,10 +3,12 @@ const express = require('express')
 const hbs = require('hbs')
 require('dotenv').config()
 
-const geocode = require('./utils/geocode.js')
-const weather = require('./utils/weather.js')
 
 const app = express()
+
+//Define routers
+
+const weatherApiRouter = require('./routes/api/weather')
 
 //Define pahts for Express config
 const publicPath = path.join(__dirname, '../public')
@@ -22,7 +24,7 @@ hbs.registerPartials(partialsPath)
 app.use(express.static(publicPath))
 
 //Routes
-app.get('', (req,res) => {
+app.get('/', (req,res) => {
     res.render('index', {
         headTitle : 'Weather',
         title : 'Weather App'
@@ -43,25 +45,7 @@ app.get('/help', (req, res) => {
     })
 })
 
-//Weather endpoint /weather?address=location
-app.get('/weather', (req, res) => {
-    if(!req.query.address) return res.send({ error: "Address is required"})
-
-    geocode(req.query.address, (error, { latitud, longitud, location } = {}) => {
-        if (error) return res.send( { error } )
-
-        weather(latitud, longitud, (error, { weather_descriptions, temperature }) => {
-            if (error) return res.send({ error })
-            
-            res.send({
-                location,
-                temperature,
-                weather: weather_descriptions[0]
-            })
-            
-        })
-    })
-})
+app.use('/weather', weatherApiRouter)
 
 app.get('/help/*', (req, res) =>{
     res.render('404Help', {
@@ -77,5 +61,5 @@ app.get('*', (req, res) =>{
 
 //Server config
 app.listen(process.env.PORT, ()=>{
-    console.log(`Server listening in port 3000`)
+    console.log(`Server listening in port ${process.env.PORT}`)
 })
