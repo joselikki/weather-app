@@ -3,43 +3,43 @@
 
     
     const makeItRain = () => {
+        let dropList = []
     
-    let dropList = []
-    for(let i = 0; i<100; i = i + 2){
-        dropList.push(i)
+        for(let i = 0; i<100; i = i + 1){
+            
+            let randomHundo = (Math.floor(Math.random() * (98 - 1 + 1) + 1));
+            let randomFiver = (Math.floor(Math.random() * (5 - 2 + 1) + 2))
+
+            let settings = {
+                left : i,
+                randomFiver,
+                randomHundo
+            }
+
+        dropList.push(settings)
     }
 
     return dropList
     }
-    
     let drops = makeItRain()
-
-    onMount( () =>{
-        console.log(drops)
-    }) 
 </script>
 
-<div class="rain banner">
-
+<div class="banner">
     {#each  drops as drop}
-        <div class="drop" style="left: {drop}%; bottom: 150%; animation-delay:0.27s; animation-duration: 2s">
-            <div class="stem" style="animation-delay: 0.27s; animation-duration:0.6s "></div>
+        <div class="drop" 
+        style="left: {drop.left}%; bottom: {drop.randomFiver + drop.randomFiver - 1 + 100}%; animation-delay:0.{drop.randomHundo}s; animation-duration: 0.8{drop.randoHundo}s;">
+            <div class="stem" style="animation-delay: 0.{drop.randomHundo}s; animation-duration:0.5{drop.randomHundo}s;"></div>
         </div>
     {/each}
 
 </div>
 
 
-
 <style>
-    
     .banner{
         position: relative;
         height: 50vh;
         background: #060D56;
-        background: -webkit-linear-gradient(top, #060D56, #01A1AA);
-        background: -moz-linear-gradient(top, #060D56, #01A1AA);
-        background: linear-gradient(to bottom, #060D56, #01A1AA);
     }
 
 
@@ -57,18 +57,18 @@
         transform: translateY(0vh);
     }
     75% {
-        transform: translateY(90vh);
+        transform: translateY(55vh);
     }
     100% {
-        transform: translateY(90vh);
+        transform: translateY(55vh);
     }
     }
 
     .stem {
-        width: 2.5px;
+        width: 2px;
         height: 60%;
         margin-left: 7px;
-        background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.25));
+        background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.3));
         animation: stem 0.5s linear infinite;
     }
 
@@ -87,35 +87,5 @@
     }
     }
 
-    .splat {
-        background-color: red;
-        width: 15px;
-        height: 10px;
-        border-top: 2px dotted rgba(255, 255, 255, 0.9);
-        border-radius: 50%;
-        opacity: 1;
-        transform: scale(0);
-        animation: splat 0.5s linear infinite;
-    }
-
-
-    @keyframes splat {
-    0% {
-        opacity: 1;
-        transform: scale(0);
-    }
-    80% {
-        opacity: 1;
-        transform: scale(0);
-    }
-    90% {
-        opacity: 0.5;
-        transform: scale(1);
-    }
-    100% {
-        opacity: 0;
-        transform: scale(1.5);
-    }
-    }
 
 </style>
