@@ -1,10 +1,11 @@
 <script>
+import Banner from "./components/banner.svelte"
 import { dataset_dev } from "svelte/internal";
 
 
 
 	let address
-	let showData = true
+	let showData = false
 
 	let mockData = {
 		location : "Guatemala, Guatemala City",
@@ -20,43 +21,46 @@ import { dataset_dev } from "svelte/internal";
 </script>
 
 <main>
-	<h1>Weather</h1>
 
-	<form on:submit|preventDefault ={handleSubmit} >
-		
-		<input 
-			bind:value={address}
-			placeholder="Location" 
-			type="text"
-		>
-		<button>Search</button>
+	<Banner />
 
-		{#if showData}
-		<div class="results">
-			<div class="data">
-				<p>Location: {mockData.location}</p>
-				<p>Temperature: {mockData.temperature}</p>
-				<p>Weather: {mockData.weather}</p>
-			</div>
-		</div>
-			{/if}
+	<div class="app-container">
+		<h1>WeatherApp</h1>
+			<form on:submit|preventDefault ={handleSubmit} >		
+				<input 
+					bind:value={address}
+					placeholder="Location" 
+					type="text"
+				>
+				<button>Search</button>
 
-
-	</form>
+				{#if showData}
+				<div class="results">
+					<div class="data">
+						<p>Location: {mockData.location}</p>
+						<p>Temperature: {mockData.temperature}</p>
+						<p>Weather: {mockData.weather}</p>
+					</div>
+				</div>
+					{/if}
+			</form>
+	</div>
 </main>
 
 <style>
-	main {
-		text-align: center;
-		padding: 1em;
-		max-width: 650px;
-		margin: 3em auto;
-	}
 
 	h1 {
 		font-size: 3em;
 		font-weight: bold;
 		letter-spacing: -0.03em;
+	}
+	
+	.app-container {
+		text-align: center;
+		padding: 0 1em;
+		margin: 0 auto;
+		max-width: 650px;
+		transform: translateY(-30vh);
 	}
 
 	.results {
