@@ -1,5 +1,5 @@
 <script>
-import Banner from "./components/banner.svelte"
+import Banner from "./components/Banner.svelte"
 import { dataset_dev } from "svelte/internal";
 
 
@@ -7,22 +7,23 @@ import { dataset_dev } from "svelte/internal";
 	let address
 	let showData = false
 
+	let trigger = false
+
 	let mockData = {
 		location : "Guatemala, Guatemala City",
 		temperature : 25,
 		weather: 'Cloudy'
 	}
 
-	const handleSubmit = (e) =>{
-		showData = false
-		showData = true
+	const handleSubmit = () =>{
+		trigger = !trigger
 	}
 
 </script>
 
 <main>
 
-	<Banner />
+	<Banner click = {trigger} />
 
 	<div class="app-container">
 		<h1>WeatherApp</h1>
