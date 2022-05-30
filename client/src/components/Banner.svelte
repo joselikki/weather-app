@@ -2,7 +2,7 @@
     import Rain from './rain/Rain.svelte'
     import Clouds from './Clouds.svelte'
 
-    export let click
+    let click = false
     let show = false
 
     $: if(click){
@@ -13,7 +13,7 @@
 
 </script>   
 
-<div class="banner" {click}>
+<div class="banner">
 
     <Clouds />
     

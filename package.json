@@ -4,17 +4,20 @@
   "description": "weather app in node.js",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node src/app.js"
+    "start": "node src/app.js",
+    "build": "npm install --prefix client && npm run build --prefix client",
+    "client": "npm run dev --prefix client",
+    "server": "nodemon src/app.js --ignore 'client/'",
+    "dev": "concurrently \"npm run server\" \"npm run client\" "
   },
   "author": "Jose Paredes",
   "license": "ISC",
   "dependencies": {
     "axios": "0.27.2",
     "concurrently": "7.2.1",
+    "cors": "^2.8.5",
     "dotenv": "16.0.1",
-    "express": "4.18.1",
-    "hbs": "4.2.0"
+    "express": "4.18.1"
   },
   "devDependencies": {
     "nodemon": "2.0.16"
