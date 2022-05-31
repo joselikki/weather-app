@@ -11,7 +11,7 @@ import Banner from "./components/Banner.svelte"
 	}
 
 	const getWeather = async (address) =>{
-		const res = await fetch(`http://localhost:3000/weather?address=${address}`)
+		const res = await fetch(`/weather?address=${address}`)
 		const weatherData = await res.json()	
 		if (res.ok) {
 			return weatherData
@@ -21,7 +21,7 @@ import Banner from "./components/Banner.svelte"
 	}	
 
 	const  handleSubmit = async () =>{
-		// data = await getWeather(address)
+		data = await getWeather(address)
 		showData = true
 	}
 
@@ -41,9 +41,9 @@ import Banner from "./components/Banner.svelte"
 
 	{#if showData}
 		<div class="data-container">
-			<p>Location: {mockData.location}</p>
-			<p>Temperature: {mockData.temperature} </p>
-			<p>Weather: {mockData.weather} </p>
+			<p>Location: {data.location}</p>
+			<p>Temperature: {data.temperature} </p>
+			<p>Weather: {data.weather} </p>
 		</div>
 		
 	{/if}
@@ -66,6 +66,7 @@ import Banner from "./components/Banner.svelte"
 	}
 
 	.data-container{
+		text-align: center;
 		transform: translateY(-15vh);
 		max-width: 650px;
 		margin: 0 auto;
