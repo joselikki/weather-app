@@ -15,7 +15,7 @@
 
 <div class="banner">
 
-    <Clouds />
+    <!-- <Clouds /> -->
     
     <!-- rain effect -->
     {#if show}
@@ -29,7 +29,7 @@
     .banner{
         position: relative;
         height: 45vh;
-        background: #0d134b;
+        background: #3d40eb;
         overflow: hidden;
     }
   

@@ -6,8 +6,8 @@ html, body {
 }
 
 body {
-	background-color: rgb(24, 23, 32);
-	color: #fff;
+	background-color: #fff;
+	color: #333;
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;

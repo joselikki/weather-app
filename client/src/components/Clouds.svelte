@@ -16,7 +16,7 @@
 
 <style>
      .cloud-rigth-container {   
-        opacity: 0.5;
+        opacity: 0.9;
         position: absolute;
         right: -10%;
         top: 10%;
@@ -25,7 +25,7 @@
     }
     
     .cloud-left-container {
-        opacity: 0.5;
+        opacity: 0.9;
         position: absolute;
         left: 0%;
         bottom: -15%;

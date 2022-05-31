@@ -11,9 +11,10 @@ import Banner from "./components/Banner.svelte"
 	}
 
 	const getWeather = async (address) =>{
-		const res = await fetch(`/weather?address=${address}`)
+		const res = await fetch(`http://localhost:3000/weather?address=${address}`)
 		const weatherData = await res.json()	
 		if (res.ok) {
+			console.log(weatherData)
 			return weatherData
 		} else {
 			throw new Error(res)
@@ -41,9 +42,9 @@ import Banner from "./components/Banner.svelte"
 
 	{#if showData}
 		<div class="data-container">
-			<p>Location: {data.location}</p>
-			<p>Temperature: {data.temperature} </p>
-			<p>Weather: {data.weather} </p>
+			<p>{data.weather} </p>
+			<p class="data-temperature">{data.temperature} &#176;C </p>
+			<p class="data-location">{data.location}</p>
 		</div>
 		
 	{/if}
@@ -52,7 +53,8 @@ import Banner from "./components/Banner.svelte"
 <style>
 
 	h1 {
-		font-size: 3em;
+		color: #fff;
+		font-size: 2.5em;
 		font-weight: bold;
 		letter-spacing: -0.03em;
 	}
@@ -64,11 +66,26 @@ import Banner from "./components/Banner.svelte"
 		max-width: 650px;
 		transform: translateY(-30vh);
 	}
-
+	p {
+		margin: 10px 0;
+	}
 	.data-container{
+		
 		text-align: center;
-		transform: translateY(-15vh);
-		max-width: 650px;
+		transform: translateY(-12vh);
+		max-width: 300px;
 		margin: 0 auto;
+		font-size: 1em;
+		font-weight: bold;
+		padding: 2em;
+		border-radius: 10px;
+	}
+
+	.data-temperature {
+		font-size: 3em;
+	}
+	.data-location{
+		font-weight: normal;
+		font-size: 0.8em;
 	}
 </style>
