@@ -1,36 +1,26 @@
 const path = require('path')
 const express = require('express')
-const hbs = require('hbs')
+const cors = require('cors')
 require('dotenv').config()
 
-
 const app = express()
+app.use(cors())
 
 //Define routers
-const homeViewRouter = require('./routes/views/home')
 const weatherApiRouter = require('./routes/api/weather')
 
 //Define pahts for Express config
-const publicPath = path.join(__dirname, '../public')
-const viewsPath = path.join(__dirname, '../templates/views')
-const partialsPath = path.join(__dirname, '../templates/partials')
+const publicPath = path.join(__dirname, 'client', 'public', 'index.html')
 
-// Handlebars set up
-app.set('view engine', 'hbs')
-app.set('views', viewsPath)
-hbs.registerPartials(partialsPath)
+app.use(express.static('client/public'))
 
-//Static directory to serve
-app.use(express.static(publicPath))
+app.get('/', (req, res) => {
+    res.sendFile(path.resolve(__dirname, publicPath))
+})
 
-//Routes
-app.use('/', homeViewRouter)
 app.use('/weather', weatherApiRouter)
-
 app.get('*', (req, res) =>{
-    res.render('404',{
-        headTitle: "404"
-    })
+    res.send('404 page not found')
 })
 
 //Server config
