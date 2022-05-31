@@ -11,7 +11,10 @@ import Banner from "./components/Banner.svelte"
 	}
 
 	const getWeather = async (address) =>{
-		const res = await fetch(`/weather?address=${address}`)
+		//Rollup will replace dev_serv variable on production to "" and localhost in dev
+		//check -> rollup.config --> puglings --> replace
+		const dev_server = "DEV_SERVER"
+		const res = await fetch(`${dev_server}/weather?address=${address}`)
 		const weatherData = await res.json()	
 		if (res.ok) {
 			return weatherData
