@@ -13,7 +13,7 @@ const weather = async (lat, long, callback) => {
             callback("Unable to find location, please check!", undefined)
             
         } else {
-            callback(undefined, response.data.current)
+            callback(undefined, response.data)
         }
 
     }catch(err){

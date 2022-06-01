@@ -1,20 +1,29 @@
 <script>
 import Banner from "./components/Banner.svelte"
+import WeatherCard from "./components/WeatherCard.svelte"
+import CloudLeft from "./svgs/CloudLeft.svelte"
+import CloudRight from "./svgs/CloudRight.svelte"
+
 	let address
 	let data
-	let showData = false
+	let showData = 'no'
 
 	const mockData = {
-		location: "Guatemala, Guatemala",
-		temperature: 21,
-		weather: "Cloudy"
+		cloud_cover: 8,
+		feels_like: 12,
+		humidity:65,
+		is_day: "no",
+		local_time: "2022-06-01 01:37",
+		location: "Paris, France",
+		temperature: 12,
+		weather_description: "Clear",
+		wind_speed: 7,
 	}
 
 	const getWeather = async (address) =>{
-		const res = await fetch(`http://localhost:3000/weather?address=${address}`)
+		const res = await fetch(`/weather?address=${address}`)
 		const weatherData = await res.json()	
 		if (res.ok) {
-			console.log(weatherData)
 			return weatherData
 		} else {
 			throw new Error(res)
@@ -22,8 +31,9 @@ import Banner from "./components/Banner.svelte"
 	}	
 
 	const  handleSubmit = async () =>{
+		showData = 'loading'
 		data = await getWeather(address)
-		showData = true
+		showData = 'yes'
 	}
 
 </script>
@@ -40,14 +50,18 @@ import Banner from "./components/Banner.svelte"
 			</form>
 	</div>
 
-	{#if showData}
-		<div class="data-container">
-			<p>{data.weather} </p>
-			<p class="data-temperature">{data.temperature} &#176;C </p>
-			<p class="data-location">{data.location}</p>
+	{#if showData === 'yes'}
+		<WeatherCard {...data}/>
+	{:else if showData === 'loading'}
+	<div class="place-holder">
+		<h2>Loading ....</h2>
+	</div>
+	{:else}
+	<div class="place-holder">
+			<h2>Nothing to show yet</h2>
+			<h3>Please enter the location and hit search!</h3>
 		</div>
-		
-	{/if}
+			{/if} 
 </main>
 
 <style>
@@ -58,7 +72,10 @@ import Banner from "./components/Banner.svelte"
 		font-weight: bold;
 		letter-spacing: -0.03em;
 	}
-	
+
+	.place-holder{
+		text-align: center;
+	}
 	.search-container {
 		text-align: center;
 		padding: 0 1em;
@@ -66,26 +83,5 @@ import Banner from "./components/Banner.svelte"
 		max-width: 650px;
 		transform: translateY(-30vh);
 	}
-	p {
-		margin: 10px 0;
-	}
-	.data-container{
-		
-		text-align: center;
-		transform: translateY(-12vh);
-		max-width: 300px;
-		margin: 0 auto;
-		font-size: 1em;
-		font-weight: bold;
-		padding: 2em;
-		border-radius: 10px;
-	}
-
-	.data-temperature {
-		font-size: 3em;
-	}
-	.data-location{
-		font-weight: normal;
-		font-size: 0.8em;
-	}
+	
 </style>
