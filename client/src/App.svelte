@@ -14,9 +14,9 @@ import WeatherCard from "./components/WeatherCard.svelte"
 		humidity:65,
 		is_day: "no",
 		local_time: "2022-06-01 01:37",
-		location: "Paris, France",
+		location: "Antigua Guatemala, Sacatepéquez, Guatemala",
 		temperature: 12,
-		weather_description: "Clear",
+		weather_description: "Partly cloudy",
 		wind_speed: 7,
 	}
 
@@ -36,10 +36,10 @@ import WeatherCard from "./components/WeatherCard.svelte"
 		showData = 'loading'
 		data = await getWeather(address)
 
-		if(data.error){
-			data = data.error
-			return showData = 'error'
-		}
+		 if(data.error){
+		 	data = data.error
+		 	return showData = 'error'
+		 }
 
 		showData = 'yes'
 	}
@@ -104,7 +104,7 @@ import WeatherCard from "./components/WeatherCard.svelte"
 	main{
 		height: 100vh;
 		display: grid;
-		grid-template-rows: 40fr 55fr 5fr;
+		grid-template-rows: 45fr 50fr 5fr;
 	}
 
 	h1 {

@@ -1,6 +1,5 @@
 <script>
     import Rain from './rain/Rain.svelte'
-    import Clouds from './Clouds.svelte'
 
     let click = false
     let show = false

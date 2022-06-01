@@ -1,34 +1,53 @@
 <script>
     export let  cloud_cover,
-                feels_like,
+                //feels_like,
                 humidity,
-                is_day,
-                local_time,
+                //is_day,
+                //local_time,
                 location,
                 temperature,
                 weather_description,
                 wind_speed  = "";
+
+    import CloudCoverIcon from "../svgs/CloudCoverIcon.svelte";
+    import HumidityIcon from "../svgs/HumidityIcon.svelte";
+    import WindIcon from "../svgs/WindIcon.svelte";
 </script>
 
-<div class="wather-card-container">
-    <h3>{weather_description} </h3>
-    <h2 >{temperature} &#176;C </h2>
-    <h4 >{location}</h4>
 
-    <br>
-    <div class="extra-info">
-        <p>Cloud Cover: {cloud_cover}%</p>
-        <p>Humidity: {humidity}%</p>
-        <p>Wind Speed: {wind_speed} km/h.</p>
-        <p>Time: {local_time}</p>
+
+<div class="wather-card-container">
+    <h3 class="wather-description">{weather_description} </h3>
+    <h2 >{temperature} &#176;C </h2>
+    <h4 class="wather-location">{location}</h4>
+    <div class="card-details">
+        <div class="metric">
+            <CloudCoverIcon />
+            <p>{cloud_cover}%</p>
+            <span>Cloud Cover</span>
+        </div>
+
+        <div class="metric">
+            <WindIcon />
+            <p>{wind_speed} km/h</p>
+            <span>Wind Speed</span>
+        </div>
+        
+        <div class="metric">
+            <HumidityIcon />
+            <p>{humidity}%</p>
+            <span>Humidity</span>
+        </div>
+        
     </div>
+    <!-- <p>Time: {local_time}</p> -->
 
 </div>
 
 <style>
 
     .wather-card-container{
-        width: 300px;
+        min-width: 350px;
         margin: 0 auto;
         text-align: center;
     }
@@ -39,14 +58,35 @@
 
     h2 {
         font-size: 3em;
+        letter-spacing: -0.045em;
     }
 
     p{
         margin: 0;
     }
 
-    .extra-info p {
-        line-height: 1.6em;
-        font-size: 0.9em;
+    .wather-description{
+        margin-bottom: 1em;
+    }
+
+    .wather-location{
+        margin-top: 1em;
+    }
+
+    .card-details {
+        margin-top: 3em;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .metric p{
+        margin-top: 0.5em;
+        font-weight: bold;
+    }
+
+    .metric span{
+        display: block;
+        margin-top: 0.6em;
+        font-size: 0.75em;
     }
 </style>
