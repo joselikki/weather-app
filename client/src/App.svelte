@@ -21,12 +21,14 @@ import WeatherCard from "./components/WeatherCard.svelte"
 	}
 
 	const getWeather = async (address) =>{
-		const res = await fetch(`/weather?address=${address}`)
-		const weatherData = await res.json()	
-		if (res.ok) {
-			return weatherData
-		} else {
-			throw new Error(res)
+		try{
+			const res = await fetch(`/weather?address=${address}`)
+			const weatherData = await res.json()	
+			if (res.ok) {
+				return weatherData
+			}
+		} catch {
+			return data = {error: "Unable to connect, please try again!"}
 		}
 	}	
 
@@ -36,8 +38,7 @@ import WeatherCard from "./components/WeatherCard.svelte"
 
 		if(data.error){
 			data = data.error
-			showData = 'error'
-			return
+			return showData = 'error'
 		}
 
 		showData = 'yes'
@@ -49,7 +50,6 @@ import WeatherCard from "./components/WeatherCard.svelte"
 
 	<section class="banner-section">
 		<Banner>
-
 			<div class="search-container">
 				<h1>WeatherApp</h1>
 					<form on:submit|preventDefault = {handleSubmit} >		
@@ -119,6 +119,7 @@ import WeatherCard from "./components/WeatherCard.svelte"
 		place-items: center;
 	}
 	.place-holder{
+		padding: 1em;
 		text-align: center;
 	}
 	.search-container {
