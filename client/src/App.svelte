@@ -1,9 +1,8 @@
 <script>
 import Banner from "./components/Banner.svelte"
 import WeatherCard from "./components/WeatherCard.svelte"
-import CloudLeft from "./svgs/CloudLeft.svelte"
-import CloudRight from "./svgs/CloudRight.svelte"
 
+	let loader_black = "/loader_black.gif"
 	let address
 	let data
 	let showData = 'no'
@@ -40,31 +39,56 @@ import CloudRight from "./svgs/CloudRight.svelte"
 
 <main>
 
-	<Banner />
+	<section class="banner-section">
+		<Banner>
 
-	<div class="search-container">
-		<h1>WeatherApp</h1>
-			<form on:submit|preventDefault = {handleSubmit} >		
-				<input  bind:value={address} placeholder="Location" type="text">
-				<button>Search</button>
-			</form>
-	</div>
+			<div class="search-container">
+				<h1>WeatherApp</h1>
+					<form on:submit|preventDefault = {handleSubmit} >		
+						<input  bind:value={address} placeholder="Location" type="text">
+						<button>Search</button>
+					</form>
+			</div>
+		</Banner>
+	</section>
 
-	{#if showData === 'yes'}
+	<section class="weather-section">
+
+		{#if showData === 'yes'}
 		<WeatherCard {...data}/>
-	{:else if showData === 'loading'}
-	<div class="place-holder">
-		<h2>Loading ....</h2>
-	</div>
-	{:else}
-	<div class="place-holder">
+		{:else if showData === 'loading'}
+		<div class="place-holder">
+			<img src={loader_black} alt="loading">
+			<h2>Loading</h2>
+		</div>
+		{:else}
+		<div class="place-holder">
 			<h2>Nothing to show yet</h2>
 			<h3>Please enter the location and hit search!</h3>
 		</div>
-			{/if} 
+		{/if} 
+
+	</section>
+
+	<footer>
+		<div class="footer-content">
+			<p>
+				Developed by <strong>Jose Paredes</strong> 
+			</p>
+			<p>
+				<a  target="_blank" href="https://github.com/joselikki/weather-app"> <strong>View on Github</strong> </a>	 
+			</p>
+		</div>
+		</footer>
 </main>
 
 <style>
+
+	main{
+		height: 100vh;
+		display: grid;
+		grid-template-rows: 40fr 55fr 5fr;
+	}
 
 	h1 {
 		color: #fff;
@@ -72,7 +96,11 @@ import CloudRight from "./svgs/CloudRight.svelte"
 		font-weight: bold;
 		letter-spacing: -0.03em;
 	}
-
+	.weather-section{
+		min-height: 350px;
+		display: grid;
+		place-items: center;
+	}
 	.place-holder{
 		text-align: center;
 	}
@@ -81,7 +109,23 @@ import CloudRight from "./svgs/CloudRight.svelte"
 		padding: 0 1em;
 		margin: 0 auto;
 		max-width: 650px;
-		transform: translateY(-30vh);
 	}
-	
-</style>
+
+	footer{
+		display: flex;
+		min-height: 40px;
+	}
+
+	.footer-content{
+		display: flex;
+		align-items: flex-end;
+		justify-content: space-between;
+		margin: 0.5em 1em;
+		border-top: 1px solid rgb(201, 201, 201);
+		width: 100%;
+	}
+	footer p {
+		margin: 0;
+		font-size: 0.8em;
+	}
+	</style>

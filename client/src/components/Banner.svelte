@@ -15,6 +15,8 @@
 
 <div class="banner">
 
+
+    <slot></slot>
     <!-- <Clouds /> -->
     
     <!-- rain effect -->
@@ -28,9 +30,12 @@
 
     .banner{
         position: relative;
-        height: 45vh;
         background: #3d40eb;
+        height: 100%;
+        min-height: 300px;
         overflow: hidden;
+        display: grid;
+        place-items: center;
     }
   
 </style>

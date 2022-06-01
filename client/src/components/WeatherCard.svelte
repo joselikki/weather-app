@@ -16,17 +16,18 @@
     <h4 >{location}</h4>
 
     <br>
-    <p>Cloud Cover: {cloud_cover}%</p>
-    <p>Humidity: {humidity}%</p>
-    <p>Wind Speed: {wind_speed} km/h.</p>
-    <p>Time: {local_time}</p>
+    <div class="extra-info">
+        <p>Cloud Cover: {cloud_cover}%</p>
+        <p>Humidity: {humidity}%</p>
+        <p>Wind Speed: {wind_speed} km/h.</p>
+        <p>Time: {local_time}</p>
+    </div>
 
 </div>
 
 <style>
 
     .wather-card-container{
-        transform: translateY(-15vh);
         width: 300px;
         margin: 0 auto;
         text-align: center;
@@ -42,5 +43,10 @@
 
     p{
         margin: 0;
+    }
+
+    .extra-info p {
+        line-height: 1.6em;
+        font-size: 0.9em;
     }
 </style>
