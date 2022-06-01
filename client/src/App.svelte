@@ -2,6 +2,7 @@
 import Banner from "./components/Banner.svelte"
 import WeatherCard from "./components/WeatherCard.svelte"
 
+	let notFoundImg = "/search.png"
 	let loader_black = "/loader_black.gif"
 	let address
 	let data
@@ -32,6 +33,13 @@ import WeatherCard from "./components/WeatherCard.svelte"
 	const  handleSubmit = async () =>{
 		showData = 'loading'
 		data = await getWeather(address)
+
+		if(data.error){
+			data = data.error
+			showData = 'error'
+			return
+		}
+
 		showData = 'yes'
 	}
 
@@ -56,11 +64,20 @@ import WeatherCard from "./components/WeatherCard.svelte"
 
 		{#if showData === 'yes'}
 		<WeatherCard {...data}/>
+
 		{:else if showData === 'loading'}
 		<div class="place-holder">
 			<img src={loader_black} alt="loading">
 			<h2>Loading</h2>
 		</div>
+
+		{:else if showData === "error"}
+
+		<div class="place-holder">
+			<img src={notFoundImg} alt="search not found" width="75px">
+			<h2>{data}</h2>
+		</div>
+
 		{:else}
 		<div class="place-holder">
 			<h2>Nothing to show yet</h2>
