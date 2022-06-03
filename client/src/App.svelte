@@ -1,7 +1,7 @@
 <script>
 import Banner from "./components/Banner.svelte"
 import WeatherCard from "./components/WeatherCard.svelte"
-import SunPlaceHolderIcon from "./svgs/SunPlaceHolderIcon.svelte"
+import SunyIcon from "./svgs/SunyIcon.svelte"
 
 
 	let notFoundImg = "/search.png"
@@ -82,7 +82,9 @@ import SunPlaceHolderIcon from "./svgs/SunPlaceHolderIcon.svelte"
 
 		{:else}
 		<div class="place-holder">
-			<SunPlaceHolderIcon />
+			<div class="suny-animated-container">
+				<SunyIcon />
+			</div>
 			<h2>Nothing to show yet</h2>
 			<h3>Please enter the location and hit search!</h3>
 		</div>
@@ -136,7 +138,9 @@ import SunPlaceHolderIcon from "./svgs/SunPlaceHolderIcon.svelte"
 		display: flex;
 		min-height: 40px;
 	}
-
+	.suny-animated-container {
+		transform: translateY(40px);
+	}
 	.footer-content{
 		display: flex;
 		align-items: flex-end;
