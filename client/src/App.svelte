@@ -36,12 +36,12 @@ import SunPlaceHolderIcon from "./svgs/SunPlaceHolderIcon.svelte"
 
 	const  handleSubmit = async () =>{
 		showData = 'loading'
-		 data = await getWeather(address)
+		  data = await getWeather(address)
 
-		  if(data.error){
-		  	data = data.error
-		  	return showData = 'error'
-		  }
+		   if(data.error){
+		   	data = data.error
+		   	return showData = 'error'
+		   }
 
 		showData = 'yes'
 	}

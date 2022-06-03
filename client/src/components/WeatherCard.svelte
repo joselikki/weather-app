@@ -40,6 +40,7 @@ import { onMount } from "svelte";
     <h2 >{count} &#176;C </h2>
     <h4 class="wather-location">{location}</h4>
     <div class="card-details">
+
         <div class="metric">
             <CloudCoverIcon />
             <p>{cloud_cover}%</p>
@@ -69,6 +70,8 @@ import { onMount } from "svelte";
         min-width: 350px;
         margin: 0 auto;
         text-align: center;
+        overflow: hidden;
+        padding-bottom: 0.5em;
     }
 
     h2,h3,h4{
@@ -97,7 +100,12 @@ import { onMount } from "svelte";
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
     }
-
+    .metric {
+        transform: translateY(100px);
+        animation: metrics 0.8s ease-out;
+        animation-delay: 0.2s;
+         animation-fill-mode: forwards;
+    }
     .metric p{
         margin-top: 0.5em;
         font-weight: bold;
@@ -107,5 +115,27 @@ import { onMount } from "svelte";
         display: block;
         margin-top: 0.6em;
         font-size: 0.75em;
+    }
+
+    @keyframes metrics {
+        0% {
+            transform: translateY(100px);
+        }
+        50% {
+            transform: translateY(-10px);
+        }
+
+        60% {
+            transform: translateY(10px);
+        }
+        75% {
+            transform: translateY(-5px);
+        }
+        95% {
+            transform: translateY(5px);
+        }
+        100% {
+            transform: translateY(0px);
+        }
     }
 </style>
