@@ -1,6 +1,8 @@
 <script>
 import Banner from "./components/Banner.svelte"
 import WeatherCard from "./components/WeatherCard.svelte"
+import SunPlaceHolderIcon from "./svgs/SunPlaceHolderIcon.svelte"
+
 
 	let notFoundImg = "/search.png"
 	let loader_black = "/loader_black.gif"
@@ -80,6 +82,7 @@ import WeatherCard from "./components/WeatherCard.svelte"
 
 		{:else}
 		<div class="place-holder">
+			<SunPlaceHolderIcon />
 			<h2>Nothing to show yet</h2>
 			<h3>Please enter the location and hit search!</h3>
 		</div>
