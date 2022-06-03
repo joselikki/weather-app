@@ -81,7 +81,7 @@ import SunyIcon from "./svgs/SunyIcon.svelte"
 		</div>
 
 		{:else}
-		<div class="place-holder">
+		<div class="place-holder init">
 			<div class="suny-animated-container">
 				<SunyIcon />
 			</div>
@@ -111,7 +111,6 @@ import SunyIcon from "./svgs/SunyIcon.svelte"
 		display: grid;
 		grid-template-rows: 45fr 50fr 5fr;
 	}
-
 	h1 {
 		color: #fff;
 		font-size: 2.5em;
@@ -127,13 +126,15 @@ import SunyIcon from "./svgs/SunyIcon.svelte"
 		padding: 1em;
 		text-align: center;
 	}
+	.place-holder.init{
+		transform: translateY(-40px);
+	}
 	.search-container {
 		text-align: center;
 		padding: 0 1em;
 		margin: 0 auto;
 		max-width: 650px;
 	}
-
 	footer{
 		display: flex;
 		min-height: 40px;
