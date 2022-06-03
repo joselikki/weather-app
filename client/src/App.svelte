@@ -15,7 +15,7 @@ import WeatherCard from "./components/WeatherCard.svelte"
 		is_day: "no",
 		local_time: "2022-06-01 01:37",
 		location: "Antigua Guatemala, Sacatepéquez, Guatemala",
-		temperature: 12,
+		temperature: 20,
 		weather_description: "Partly cloudy",
 		wind_speed: 7,
 	}
@@ -34,12 +34,12 @@ import WeatherCard from "./components/WeatherCard.svelte"
 
 	const  handleSubmit = async () =>{
 		showData = 'loading'
-		data = await getWeather(address)
+		 data = await getWeather(address)
 
-		 if(data.error){
-		 	data = data.error
-		 	return showData = 'error'
-		 }
+		  if(data.error){
+		  	data = data.error
+		  	return showData = 'error'
+		  }
 
 		showData = 'yes'
 	}

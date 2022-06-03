@@ -1,4 +1,6 @@
 <script>
+import { onMount } from "svelte";
+
     export let  cloud_cover,
                 //feels_like,
                 humidity,
@@ -9,16 +11,33 @@
                 weather_description,
                 wind_speed  = "";
 
+
     import CloudCoverIcon from "../svgs/CloudCoverIcon.svelte";
     import HumidityIcon from "../svgs/HumidityIcon.svelte";
     import WindIcon from "../svgs/WindIcon.svelte";
+
+    let count = 0
+    const speed = 200
+    
+    const updateCount = () =>{
+        if (count < temperature){
+            count = count + 1
+            setTimeout( updateCount, 30);
+        } else {
+            count = temperature
+        }
+    }
+
+    onMount(()=> {
+        updateCount()
+    })
 </script>
 
 
 
 <div class="wather-card-container">
     <h3 class="wather-description">{weather_description} </h3>
-    <h2 >{temperature} &#176;C </h2>
+    <h2 >{count} &#176;C </h2>
     <h4 class="wather-location">{location}</h4>
     <div class="card-details">
         <div class="metric">
