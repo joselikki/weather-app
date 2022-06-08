@@ -19,11 +19,13 @@ app.get('/', (req, res) => {
 })
 
 app.use('/weather', weatherApiRouter)
-app.get('*', (req, res) =>{
+app.get('*', (req, res) => {
     res.send('404 page not found')
 })
 
 //Server config
-app.listen(process.env.PORT, ()=>{
-    console.log(`Server listening in port ${process.env.PORT}`)
+app.listen(process.env.PORT, () => {
+    console.log(
+        `Server listening in port: http://localhost:${process.env.PORT}`
+    )
 })

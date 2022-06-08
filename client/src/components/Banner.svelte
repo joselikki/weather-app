@@ -4,30 +4,22 @@
     let click = false
     let show = false
 
-    $: if(click){
+    $: if (click) {
         show = true
     } else {
         show = false
     }
-
-</script>   
+</script>
 
 <div class="banner">
-
-
-    <slot></slot>
-    <!-- <Clouds /> -->
-    
-    <!-- rain effect -->
+    <slot />
     {#if show}
         <Rain />
     {/if}
-
 </div>
 
 <style>
-
-    .banner{
+    .banner {
         position: relative;
         background: #3d40eb;
         height: 100%;
@@ -36,5 +28,4 @@
         display: grid;
         place-items: center;
     }
-  
 </style>
