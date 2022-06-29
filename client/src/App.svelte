@@ -2,24 +2,13 @@
     import Banner from './components/Banner.svelte'
     import WeatherCard from './components/WeatherCard.svelte'
     import SunyIcon from './svgs/SunyIcon.svelte'
+    import Footer from './components/Footer.svelte'
 
     let notFoundImg = '/search.png'
     let loader_black = '/loader_black.gif'
     let address
     let data
     let showData = 'no'
-
-    const mockData = {
-        cloud_cover: 8,
-        feels_like: 12,
-        humidity: 65,
-        is_day: 'no',
-        local_time: '2022-06-01 01:37',
-        location: 'Antigua Guatemala, Sacatepéquez, Guatemala',
-        temperature: 20,
-        weather_description: 'Partly cloudy',
-        wind_speed: 7,
-    }
 
     const getWeather = async (address) => {
         try {
@@ -34,15 +23,20 @@
     }
 
     const handleSubmit = async () => {
-        showData = 'loading'
-        data = await getWeather(address)
+        if (address) {
+            showData = 'loading'
+            data = await getWeather(address)
 
-        if (data.error) {
-            data = data.error
+            if (data.error) {
+                data = data.error
+                return (showData = 'error')
+            }
+
+            showData = 'yes'
+        } else {
+            data = 'Please enter an address!'
             return (showData = 'error')
         }
-
-        showData = 'yes'
     }
 </script>
 
@@ -86,36 +80,10 @@
             </div>
         {/if}
     </section>
-
-    <footer>
-        <div class="footer-content">
-            <p>
-                Developed by <strong>Jose Paredes</strong>
-            </p>
-            <p>
-                <a
-                    target="_blank"
-                    href="https://github.com/joselikki/weather-app"
-                >
-                    <strong>View on Github</strong>
-                </a>
-            </p>
-        </div>
-    </footer>
+    <Footer />
 </main>
 
 <style>
-    main {
-        height: 100vh;
-        display: grid;
-        grid-template-rows: 45fr 50fr 5fr;
-    }
-    h1 {
-        color: #fff;
-        font-size: 2.5em;
-        font-weight: bold;
-        letter-spacing: -0.03em;
-    }
     .weather-section {
         min-height: 350px;
         display: grid;
@@ -134,23 +102,8 @@
         margin: 0 auto;
         max-width: 650px;
     }
-    footer {
-        display: flex;
-        min-height: 40px;
-    }
+
     .suny-animated-container {
         transform: translateY(40px);
-    }
-    .footer-content {
-        display: flex;
-        align-items: flex-end;
-        justify-content: space-between;
-        margin: 0.5em 1em;
-        border-top: 1px solid rgb(201, 201, 201);
-        width: 100%;
-    }
-    footer p {
-        margin: 0;
-        font-size: 0.8em;
     }
 </style>
