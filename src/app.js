@@ -10,9 +10,9 @@ app.use(cors())
 const weatherApiRouter = require('./routes/api/weather')
 
 //Define pahts for Express config
-const publicPath = path.join(__dirname, 'client', 'public', 'index.html')
+const publicPath = path.join(__dirname, 'client', 'dist', 'index.html')
 
-app.use(express.static('client/public'))
+app.use(express.static('client/dist'))
 
 app.get('/', (req, res) => {
     res.sendFile(path.resolve(__dirname, publicPath))
